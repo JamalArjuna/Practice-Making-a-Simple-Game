@@ -1,4 +1,4 @@
-// Class Player
+
 class Player{
     String name;
     Integer level;
@@ -30,7 +30,28 @@ class Player{
         this.weapon.Display();
     }
 
+    // Display War Function
+    void Attacking(Player Opponent){
+        Integer attackPower = this.weapon.attackPower;
+        System.out.println(this.name + " Attacking " + Opponent.name + " with " + attackPower + " Points");
+        Opponent.Defending(attackPower);
+    }
+
+    void Defending(Integer attackPower){
+        Integer damage;
+           // Perhitungan Darah
+           if (this.armor.defensePower < attackPower){
+            damage = this.armor.defensePower - attackPower;
+            damage = damage * -1;
+           } else{
+            damage = 0;
+           }
+           this.health = this.health - damage;
+           System.out.println(this.name + " Gets damage " + damage + " Points");
+    }
+
 }
+
 
 // Class Armor
 class Armor{
@@ -85,8 +106,32 @@ public class Main {
         player2.equipWeapon(bow);
         player2.equipArmor(leatherArmor);
         player2.Display();
+
+        Boolean battlefield = true;
+        System.out.println("\n==============Battlefield================");
+        while(battlefield){
+            
+            player1.Attacking(player2);
+            System.out.println("\n");
+            System.out.println("\n");
+            player1.Display();
+            System.out.println("\n");
+            player2.Display();
+
+            player2.Attacking(player1);
+            System.out.println("\n");
+            System.out.println("\n");
+            player1.Display();
+            System.out.println("\n");
+            player2.Display();
+        
+            if (player1.health < 1 || player2.health < 1){
+                battlefield = false;
+                break;
+            }
+        }
+       
+
+
     }
-
 }
-
-// Player, Damage,

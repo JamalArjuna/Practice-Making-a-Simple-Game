@@ -27,6 +27,7 @@ class Player{
         System.out.println("Nama = " + this.name);
         System.out.println("Health = " + this.health);
         this.armor.Display();
+        System.out.println("\n");
         this.weapon.Display();
     }
 
